@@ -1,4 +1,9 @@
 #include "Game.hpp"
+#include "TextureManager.hpp"
+#include "GameObject.hpp"
+
+
+GameObject* player;
 
 
 Game::Game() {
@@ -34,6 +39,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     } else {
         isRunning = false;
     }
+
+    player = new GameObject("assets/player.png", renderer, 100, 100);
+
 }
 
 void Game::handleEvents() {
@@ -51,14 +59,14 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-
+    player->Update();
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
 
     // Add stuff to render
-    // ...
+    player->Render();
 
     SDL_RenderPresent(renderer);
 }
